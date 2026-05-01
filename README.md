@@ -1,6 +1,6 @@
 # aerobeat-tool-core
 
-Shared AeroBeat tool-side contracts for workflow DTOs, operation results, progress/diagnostic reporting, tool settings or persistence models, and package-oriented import/export/migration orchestration interfaces.
+Shared AeroBeat tool-side contracts for workflow DTOs, operation results, progress/diagnostic reporting, tool settings or persistence models, and tool workflow interfaces for package-oriented import/export/migration operations.
 
 ## Architecture role
 
