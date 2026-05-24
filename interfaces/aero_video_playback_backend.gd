@@ -1,0 +1,53 @@
+class_name AeroVideoPlaybackBackend
+extends RefCounted
+
+const AeroVideoPlaybackContract := preload("res://../globals/aero_video_playback_contract.gd")
+
+func load(_source: Dictionary) -> Dictionary:
+	return _unsupported("load")
+
+func play() -> Dictionary:
+	return _unsupported("play")
+
+func pause() -> Dictionary:
+	return _unsupported("pause")
+
+func stop() -> Dictionary:
+	return _unsupported("stop")
+
+func seek(_seconds: float) -> Dictionary:
+	return _unsupported("seek")
+
+func set_loop(_enabled: bool) -> Dictionary:
+	return _unsupported("set_loop")
+
+func set_rate(_rate: float) -> Dictionary:
+	return _unsupported("set_rate")
+
+func get_state() -> Dictionary:
+	return AeroVideoPlaybackContract.build_state_snapshot()
+
+func get_position() -> float:
+	return float(get_state().get("position", 0.0))
+
+func get_duration() -> float:
+	return float(get_state().get("duration", 0.0))
+
+func get_media_info() -> Dictionary:
+	return {}
+
+func attach_surface(_node: Node) -> Dictionary:
+	return _unsupported("attach_surface")
+
+func detach_surface() -> Dictionary:
+	return _unsupported("detach_surface")
+
+func get_last_error() -> Dictionary:
+	return {}
+
+func _unsupported(method_name: String) -> Dictionary:
+	return AeroVideoPlaybackContract.fail(
+		"backend_method_unimplemented",
+		"%s is not implemented on this backend." % method_name,
+		{"method": method_name}
+	)

@@ -13,6 +13,7 @@ For the current downscoped v1 architecture, the likely contract categories here 
 - progress, warning, error, and diagnostic report contracts
 - tool settings, persistence, and local index/cache metadata models
 - orchestration interfaces used by CLI, editor, and automation-facing tool workflows
+- narrow cross-backend playback contracts when a tool-facing package needs shared vocabulary without sharing implementation
 
 ## Intended consumers
 
@@ -31,6 +32,15 @@ This repo intentionally does **not** own:
 - a blanket universal dependency that every AeroBeat repo must import
 
 Those concerns belong in the appropriate content, feature, asset, UI, or concrete tool repos instead.
+
+## Current contract slice: shared video playback vocabulary
+
+The repo now also owns a deliberately small video playback contract slice for tool-side consumers:
+
+- `globals/aero_video_playback_contract.gd` defines shared playback result keys, state names, source kinds, common error codes, and source normalization/validation helpers.
+- `interfaces/aero_video_playback_backend.gd` defines the minimal backend lifecycle interface that concrete playback vendors can implement.
+
+This slice is intentionally narrow. It does **not** own playback orchestration, signals, scene wiring, vendor capability translation, or concrete player factories. Those belong in the concrete playback facade repo (`aerobeat-tool-video-player`) and vendor adapter repos (such as Godot-specific backends).
 
 ## Repository status
 
